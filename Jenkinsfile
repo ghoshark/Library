@@ -1,5 +1,8 @@
 pipeline {
      agent any
+      options {
+           ansiColor('xterm')
+         }
      stages {
          
            stage("Git Checkout") {
@@ -63,8 +66,14 @@ pipeline {
                     sh "ansible-playbook /home/sesa475934/projects/onlinelibrary/ansible/deploy.yml --extra-vars 'host_name=qa_server remote_username=sesa475934'"
                }
           }  
+             stage("Deploy to Production") {
+               steps {
+                    input 'Continue to Production deployment?'
+                    echo "Prod deployment"
+                    sh "ansible-playbook /home/sesa475934/projects/onlinelibrary/ansible/deploy.yml --extra-vars 'host_name=qa_server remote_username=sesa475934'"
+               }
+          }  
           
      }
      
 }
-          
