@@ -37,6 +37,21 @@ pipeline {
                     sh "gradle jacocoTestCoverageVerification"
                }
           }
+          
+            stage('Sonarqube Analysis') {
+                environment {
+                    scannerHome = tool 'SonarQubeScanner'
+                }
+                steps {
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=/home/sesa475934/projects/Library/sonar-project.properties"
+                    }
+                    timeout(time: 10, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: true
+                    }
+                }
+            }       
+                      
            stage("Build Project") {
                steps {
                     sh "gradle build"
@@ -63,14 +78,14 @@ pipeline {
              stage("Deploy to QA") {
                steps {
                     echo "QA deployment"
-                    sh "ansible-playbook /home/sesa475934/projects/onlinelibrary/ansible/deploy.yml --extra-vars 'host_name=qa_server remote_username=sesa475934'"
+                    sh "ansible-playbook /home/sesa475934/projects/Library/ansible/deploy.yml --extra-vars 'host_name=qa_server remote_username=sesa475934'"
                }
           }  
              stage("Deploy to Production") {
                steps {
                     input 'Continue to Production deployment?'
                     echo "Prod deployment"
-                    sh "ansible-playbook /home/sesa475934/projects/onlinelibrary/ansible/deploy.yml --extra-vars 'host_name=qa_server remote_username=sesa475934'"
+                    sh "ansible-playbook /home/sesa475934/projects/Library/ansible/deploy.yml --extra-vars 'host_name=qa_server remote_username=sesa475934'"
                }
           }  
           
