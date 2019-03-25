@@ -30,27 +30,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-// To publish artifact in Artifactory
 
-apply plugin: "maven-publish"
-publishing {
-  publications {
-    maven(MavenPublication) {
-         artifact("/home/sesa475934/projects/Library/build/libs/onlinelibrary.jar") {
-         extension "tar.gz"
-       }
-      groupId 'onlinelibrary'
-      artifactId 'library'
-      version '1.0'
-    }
-  }
-  repositories {
-     maven {
-      credentials {
-      username 'admin'
-      password 'password'
-     }
-     url "http://52.179.9.125:8081/artifactory"
-    }
-  }
-}
+task hello {
+	    doFirst {
+		println 'Hello world!'
+	    }
+	}
+
