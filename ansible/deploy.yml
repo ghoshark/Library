@@ -28,7 +28,7 @@
     docker_login:
      email: "arkaghosh.nb@gmail.com"
      username: "arghosh"
-     password: "February2019!"
+     password: "arghosh"
 
   - name: ensure a container is running
     docker_container:
