@@ -2,5 +2,5 @@ projectKey=library.org.sonarqube:sonarqube-scanner
 serverUrl=http://10.0.0.6:9000/sonarqube-dev
 serverVersion=7.6.0.21501
 dashboardUrl=http://10.0.0.6:9000/sonarqube-dev/dashboard?id=library.org.sonarqube%3Asonarqube-scanner
-ceTaskId=AWmZNvkvUYdF6KsWRoCb
-ceTaskUrl=http://10.0.0.6:9000/sonarqube-dev/api/ce/task?id=AWmZNvkvUYdF6KsWRoCb
+ceTaskId=AWnXK3aOtjcFpVcA9dRa
+ceTaskUrl=http://10.0.0.6:9000/sonarqube-dev/api/ce/task?id=AWnXK3aOtjcFpVcA9dRa
